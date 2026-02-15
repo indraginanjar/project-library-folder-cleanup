@@ -87,8 +87,8 @@ cmake ..
 make -j$(nproc)
 
 # Executables will be in build directory:
-# - cleanup_cli
-# - cleanup_gui
+# - plf_cleanup_cli
+# - plf_cleanup_gui
 ```
 
 **Optional: Install system-wide**
@@ -115,8 +115,8 @@ REM Build
 cmake --build . --config Release
 
 REM Executables will be in build\Release:
-REM - cleanup_cli.exe
-REM - cleanup_gui.exe
+REM - plf_cleanup_cli.exe
+REM - plf_cleanup_gui.exe
 ```
 
 #### Using MinGW
@@ -215,7 +215,7 @@ The CLI application provides a command-line interface for automated cleanup task
 #### Basic Syntax
 
 ```bash
-./cleanup_cli [options] <base_directory>
+./plf_cleanup_cli [options] <base_directory>
 ```
 
 #### Command-Line Flags
@@ -232,22 +232,22 @@ The CLI application provides a command-line interface for automated cleanup task
 
 Dry-run scan to preview what would be deleted:
 ```bash
-./cleanup_cli --dry-run /home/user/projects
+./plf_cleanup_cli --dry-run /home/user/projects
 ```
 
 Delete with custom folder list:
 ```bash
-./cleanup_cli --folders node_modules,venv /home/user/projects
+./plf_cleanup_cli --folders node_modules,venv /home/user/projects
 ```
 
 Automated deletion without confirmation (for scripts):
 ```bash
-./cleanup_cli --force --verbose /home/user/projects
+./plf_cleanup_cli --force --verbose /home/user/projects
 ```
 
 Verbose output for debugging:
 ```bash
-./cleanup_cli --verbose --dry-run /home/user/projects
+./plf_cleanup_cli --verbose --dry-run /home/user/projects
 ```
 
 #### Exit Codes
@@ -269,7 +269,7 @@ The GUI application provides an intuitive graphical interface for interactive cl
 #### Starting the GUI
 
 ```bash
-./cleanup_gui
+./plf_cleanup_gui
 ```
 
 #### GUI Workflow
@@ -373,7 +373,7 @@ Create a `config.json` file in the application directory to persist custom folde
 Override configuration for a single run using the `--folders` flag:
 
 ```bash
-./cleanup_cli --folders node_modules,venv,target /path/to/scan
+./plf_cleanup_cli --folders node_modules,venv,target /path/to/scan
 ```
 
 This overrides both the configuration file and defaults for this execution only.
