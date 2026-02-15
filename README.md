@@ -1,6 +1,18 @@
-# Library Folder Cleanup
+# Project Library Folder Cleanup
 
 A cross-platform C++ application for recursively identifying and removing library folders (node_modules, venv, target, etc.) from a base directory.
+
+## Motivation
+
+This project was born out of a persistent problem: constantly running out of disk space. As a developer working on many different projects simultaneously, each project pulls its own set of external libraries into local folders like `node_modules`, `venv`, `target`, and others. Over time, these library folders accumulate and consume massive amounts of disk space—often tens of gigabytes—even for projects that haven't been touched in months.
+
+The problem compounds when:
+- Working with Node.js projects (each `node_modules` can be 200MB-1GB+)
+- Managing Python virtual environments (multiple `venv` folders across projects)
+- Building Rust/Java projects (large `target` and `.gradle` directories)
+- Switching between different technology stacks regularly
+
+This tool provides a quick way to identify and clean up these library folders across all your projects, reclaiming valuable disk space without manually hunting through directories.
 
 ## Features
 
