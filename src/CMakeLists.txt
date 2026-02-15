@@ -39,10 +39,10 @@ target_link_libraries(cleanup_cli_lib PUBLIC cleanup_core)
 
 # CLI application
 if(BUILD_CLI)
-    add_executable(cleanup_cli 
+    add_executable(plf_cleanup_cli 
         cli/main_cli.cpp
     )
-    target_link_libraries(cleanup_cli PRIVATE cleanup_cli_lib)
+    target_link_libraries(plf_cleanup_cli PRIVATE cleanup_cli_lib)
 endif()
 
 # GUI application
@@ -67,7 +67,7 @@ if(BUILD_GUI)
         gui/ConfigDialog.ui
     )
     
-    add_executable(cleanup_gui ${GUI_SOURCES} ${GUI_HEADERS} ${GUI_UI})
-    target_link_libraries(cleanup_gui PRIVATE cleanup_core Qt6::Core Qt6::Widgets)
-    target_include_directories(cleanup_gui PRIVATE ${CMAKE_SOURCE_DIR}/include)
+    add_executable(plf_cleanup_gui ${GUI_SOURCES} ${GUI_HEADERS} ${GUI_UI})
+    target_link_libraries(plf_cleanup_gui PRIVATE cleanup_core Qt6::Core Qt6::Widgets)
+    target_include_directories(plf_cleanup_gui PRIVATE ${CMAKE_SOURCE_DIR}/include)
 endif()
