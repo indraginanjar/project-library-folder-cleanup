@@ -43,8 +43,20 @@ sudo dnf install gcc-c++ cmake qt6-qtbase-devel
 1. Install Visual Studio 2017 or later with C++ development tools
 2. Install CMake from https://cmake.org/download/
 3. Install Qt6 from https://www.qt.io/download-qt-installer
-   - Add Qt6 bin directory to PATH
+   - **IMPORTANT**: Add Qt6 bin directories to environment variable PATH
+   - Example paths to add:
+     - `C:\Qt\6.10.2\mingw_64\bin`
+     - `C:\Qt\Tools\mingw1310_64\bin`
    - Or set `CMAKE_PREFIX_PATH` to Qt6 installation directory
+
+**How to Add to PATH (Windows):**
+1. Open System Properties → Advanced → Environment Variables
+2. In System Variables, select "Path" and click Edit
+3. Click New and add:
+   - `C:\Qt\6.10.2\mingw_64\bin` (adjust to your Qt version)
+   - `C:\Qt\Tools\mingw1310_64\bin` (adjust to your MinGW version)
+4. Click OK to save
+5. Restart terminal/command prompt to apply changes
 
 ### Building on Linux
 
@@ -156,6 +168,33 @@ chmod -R u+w build/
 ```
 
 ## Usage
+
+### Prerequisites for Running the Application (Windows)
+
+**IMPORTANT**: Before running the application, ensure Qt directories are registered in the PATH environment variable:
+
+1. **Check current PATH:**
+   ```cmd
+   echo %PATH%
+   ```
+   Verify the output contains:
+   - `C:\Qt\6.10.2\mingw_64\bin`
+   - `C:\Qt\Tools\mingw1310_64\bin`
+
+2. **If not present, add to PATH:**
+   - Open System Properties → Advanced → Environment Variables
+   - Edit "Path" variable in System Variables
+   - Add both directories above
+   - Restart terminal/command prompt
+
+3. **Verify installation:**
+   ```cmd
+   where Qt6Core.dll
+   ```
+   Should display the path to Qt6Core.dll
+
+**Alternative (Without Modifying PATH):**
+Use the provided `run_gui.bat` script which automatically includes the PATH.
 
 ### CLI Mode
 
@@ -420,6 +459,9 @@ The application creates a log file in the application directory:
 - Choose a user directory instead (e.g., /home/user, C:\Users\username)
 
 **GUI doesn't start:**
+- **IMPORTANT**: Ensure Qt6 libraries are registered in the PATH environment variable
+  - Check if `C:\Qt\6.10.2\mingw_64\bin` and `C:\Qt\Tools\mingw1310_64\bin` are in PATH
+  - Restart terminal/command prompt after adding to PATH
 - Ensure Qt6 libraries are installed and in PATH
 - Check that Qt6 plugins are accessible
 - Try running from command line to see error messages
