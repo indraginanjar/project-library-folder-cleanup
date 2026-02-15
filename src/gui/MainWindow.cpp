@@ -5,6 +5,7 @@
 #include "ScanWorker.h"
 #include "DeleteWorker.h"
 #include "SafetyValidator.h"
+#include "Version.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QHeaderView>
@@ -15,6 +16,9 @@ MainWindow::MainWindow(QWidget* parent)
     , worker_thread_(nullptr) {
     
     ui_->setupUi(this);
+    
+    // Set window title with version
+    setWindowTitle(QString::fromStdString(Version::get_version_string()));
     
     // Connect UI signals to slots
     connect(ui_->browseButton, &QPushButton::clicked, 
@@ -186,6 +190,20 @@ void MainWindow::on_cancel_button_clicked() {
     // Disable cancel button
     ui_->cancelButton->setEnabled(false);
     ui_->statusLabel->setText("Cancelling...");
+}
+
+void MainWindow::on_actionAbout_triggered() {
+    QString about_text = QString::fromStdString(Version::get_version_string()) + 
+                        "\n\nA utility to scan and clean up library folders "
+                        "(node_modules, venv, etc.) to reclaim disk space.\n\n"
+                        "Features:\n"
+                        "• Recursive directory scanning\n"
+                        "• Configurable target folders\n"
+                        "• Safety validation\n"
+                        "• Dry-run mode\n"
+                        "• Progress tracking";
+    
+    QMessageBox::about(this, "About", about_text);
 }
 
 void MainWindow::on_scan_progress(const QString& path, size_t processed, size_t total) {

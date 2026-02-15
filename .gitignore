@@ -1,6 +1,7 @@
 # Build directories
 build/
 build-qt/
+build-new/
 cmake-build-*/
 
 # IDE files

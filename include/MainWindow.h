@@ -22,6 +22,7 @@ private slots:
     void on_delete_button_clicked();
     void on_configure_folders_clicked();
     void on_cancel_button_clicked();
+    void on_actionAbout_triggered();
     void on_scan_progress(const QString& path, size_t processed, size_t total);
     void on_scan_complete();
     void on_scan_error(const QString& message);

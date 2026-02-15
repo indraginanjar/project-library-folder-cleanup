@@ -2,10 +2,12 @@
 #include "ConfigurationManager.h"
 #include "SafetyValidator.h"
 #include "Logger.h"
+#include "Version.h"
 #include <iostream>
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
+#include <cstdlib>
 
 CLIApplication::CLIApplication(int argc, char* argv[]) {
     // Initialize default options
@@ -210,6 +212,10 @@ bool CLIApplication::parse_arguments(int argc, char* argv[]) {
             options_.help = true;
             return true;
         }
+        else if (arg == "--version") {
+            std::cout << Version::get_version_string() << std::endl;
+            exit(0);
+        }
         else if (arg == "--dry-run") {
             options_.dry_run = true;
         }
@@ -263,7 +269,7 @@ bool CLIApplication::parse_arguments(int argc, char* argv[]) {
 }
 
 void CLIApplication::print_usage() {
-    std::cout << "Library Folder Cleanup - CLI Mode\n\n"
+    std::cout << Version::get_version_string() << "\n\n"
               << "Usage: cleanup_cli [options] <base_directory>\n\n"
               << "Arguments:\n"
               << "  <base_directory>   Root directory to scan recursively\n\n"
@@ -273,6 +279,7 @@ void CLIApplication::print_usage() {
               << "  --verbose, -v      Enable verbose output and detailed logging\n"
               << "  --folders <list>   Comma-separated list of folder names to target\n"
               << "                     (default: node_modules,venv,.venv,target,.gradle,build,dist,__pycache__)\n"
+              << "  --version          Show version information\n"
               << "  --help, -h         Show this help message\n\n"
               << "Examples:\n"
               << "  cleanup_cli ~/projects                    # Scan and delete with confirmation\n"
